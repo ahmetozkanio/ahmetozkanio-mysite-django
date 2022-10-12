@@ -1,12 +1,14 @@
 from django.db import models
 
-
 # Create your models here.
 class UserModel(models.Model):
+
+    user_name = models.CharField(max_length = 64)
     firs_name = models.CharField(max_length = 64)
     last_name = models.CharField(max_length = 64)
     title = models.CharField(max_length = 128)
-    image  = models.ImageField(upload_to="user")
+    email = models.EmailField()
+    image  =  models.ImageField(upload_to="user")
     description = models.TextField(blank=True)
     birthday = models.DateTimeField(auto_now=True)
     avaliable = models.BooleanField(default =True)
@@ -14,8 +16,17 @@ class UserModel(models.Model):
     def __str__(self):
         return self.firs_name
 
-class Accounts(models.Model):
+class UserImagesModel(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='user_images')
+    image = models.ImageField(upload_to= "user/images")
+    def __str__(self):
+        return self.user
+
+class AccountModel(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='user_accounts')
     account_name = models.CharField(max_length = 64, unique = True)
-    account_image = models.ImageField(upload_to="account")
+    account_image = models.FileField(upload_to = "account")
     account_url = models.URLField(blank=True,null=True)
+
+    def __str__(self):
+        return self.account_name
