@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 
-class CertificatesModel(models.Model):
+class Certificate(models.Model):
     name = models.CharField(max_length= 256)
     company_name = models.CharField(max_length = 128)
     company_icon = models.URLField(blank=True)

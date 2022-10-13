@@ -17,11 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.conf.urls.i18n import i18n_patterns
+
+
 urlpatterns = [
+
+
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
 
     path('user/',include("user.urls")),
     path('projects/',include("projects.urls")),
-
+]
+urlpatterns = [
+    *i18n_patterns(*urlpatterns, prefix_default_language=False),
 ]

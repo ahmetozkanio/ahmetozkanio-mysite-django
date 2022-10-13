@@ -28,10 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,12 +42,16 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
+    'ckeditor',
+
     'api',
     'projects',
     'user',
     'certificates',
 
 ]
+
+
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -60,8 +65,10 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', # 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -129,6 +136,8 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USER_L10N = True
+
 USE_TZ = True
 
 
@@ -145,3 +154,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+LANGUAGES = (
+    ('en', 'English'),
+    ('tr', 'Turkish'),
+)
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+MODELTRANSLATION_LANGUAGE = ('tr','en')
+
+
+CKEDITOR_CONFIGS = {
+    "default": {
+        "removePlugins": "stylesheetparser",
+        "allowedContent": True,  # bunu biz ekledik html icin gerekli
+        "width": "100%",  # bu ise formun boyutu kadar genislik verdik
+    }
+}
+
+CKEDITOR_UPLOAD_PATH = "media/ckeditor/"

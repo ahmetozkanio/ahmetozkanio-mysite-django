@@ -1,23 +1,23 @@
 
 
-from .models import AccountModel, UserImagesModel, UserModel
+from .models import Account, UserImage, UserModel
 
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 
 
-class UserImagesSerializer(serializers.ModelSerializer):
+class UserImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserImagesModel
+        model = UserImage
         fields = '__all__'
-class UserAccountsSerializer(serializers.ModelSerializer):
+class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AccountModel
+        model = Account
         fields = '__all__'
 
 class UserModelSerializer(ModelSerializer):
-    user_images = UserImagesSerializer(many=True, read_only=True)
-    user_accounts = UserAccountsSerializer(many=True, read_only=True)
+    user_images = UserImageSerializer(many=True, read_only=True)
+    user_accounts = UserAccountSerializer(many=True, read_only=True)
     class Meta:
         model = UserModel
         fields = ('id','user_name', 'firs_name','last_name','title' ,'email', 'image', 'description','birthday','avaliable','user_images','user_accounts')
