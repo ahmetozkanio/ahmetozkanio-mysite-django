@@ -21,7 +21,7 @@ class UserImage(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='user_images')
     image = models.ImageField(upload_to= "user/images")
     def __str__(self):
-        return self.user
+        return self.user.user_name
 
 class Account(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='user_accounts')
