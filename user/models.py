@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class UserModel(models.Model):
 
@@ -27,6 +28,5 @@ class AccountModel(models.Model):
     account_name = models.CharField(max_length = 64, unique = True)
     account_image = models.FileField(upload_to = "account")
     account_url = models.URLField(blank=True,null=True)
-
     def __str__(self):
         return self.account_name
