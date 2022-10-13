@@ -1,13 +1,20 @@
+from unicodedata import category
 from django.db import models
 
 # Create your models here.
 
+class ProjectCategory(models.Model):
+    category_name = models.CharField(max_length=128,unique=True)
+    def __str__(self):
+        return self.category_name
+
+
 class Project(models.Model):
-    #id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length = 128, unique = True)
     description = models.TextField(blank = True,null = True)
-    github_url = models.URLField(blank=True)
+    github_url = models.URLField(blank=True,)
     date = models.DateField()
+    category = models.ManyToManyField(ProjectCategory,null = True)
     image = models.ImageField(upload_to="projects/",default = "projects/default.png")
     avaliable = models.BooleanField(default =True)
     def __str__(self):
@@ -25,3 +32,5 @@ class ProjectTool(models.Model):
     tool_icon = models.ImageField(upload_to = "projects/tools")
     def __str__(self):
         return self.project.name
+
+
