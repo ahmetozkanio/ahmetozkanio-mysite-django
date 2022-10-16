@@ -14,7 +14,7 @@ class Project(models.Model):
     description = models.TextField(blank = True,null = True)
     github_url = models.URLField(blank=True,)
     date = models.DateField()
-    category = models.ManyToManyField(ProjectCategory,null = True)
+    category = models.ManyToManyField(ProjectCategory)
     image = models.ImageField(upload_to="projects/",default = "projects/default.png")
     avaliable = models.BooleanField(default =True)
     def __str__(self):
