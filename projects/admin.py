@@ -1,15 +1,23 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
-from projects.models import  ProjectImage, Project, ProjectTool
+from projects.models import   ProjectImage, Project, ProjectTool
 
 # Register your models here.
 #admin.site.register(ProjectModel)
-admin.site.register(ProjectImage)
-admin.site.register(ProjectTool)
+# admin.site.register(ProjectImage)
+# admin.site.register(ProjectTool)
 
+
+
+
+class ProjectImageAdmin(admin.StackedInline):
+    model = ProjectImage 
+class ProjectToolAdmin(admin.StackedInline):
+    model = ProjectTool 
 @admin.register(Project)
 class ProductAdmin(TranslationAdmin):
-    group_fieldsets = True  
+    group_fieldsets = True
+    inlines = [ProjectToolAdmin,ProjectImageAdmin]
     list_display = ("name",)
     class Media:
         js = (
