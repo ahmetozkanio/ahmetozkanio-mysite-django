@@ -4,4 +4,4 @@ from .models import Project
 
 @register(Project)
 class UserTranslationOptions(TranslationOptions):
-    fields = ('name', 'description')
+    fields = ('name', 'description','slug')
