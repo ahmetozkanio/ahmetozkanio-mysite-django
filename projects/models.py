@@ -13,12 +13,13 @@ PROJECT_TOOLS = (
     ('flutter','Flutter'),
     ('android', 'Android'),
     ('java', 'Java'),
+    ('swift', 'Swift'),
     ('ios', 'IOS'),
+    ('xcode', 'Xcode'),
+    ('django', 'Django'),
+    ('firebase', 'Firebase'),
     ('figma', 'Figma'),
     ('adobexd', 'Adobe Xd'),
-    ('django', 'Django'),
-    ('djangorestapi', 'Django Rest Api'),
-    ('firebase', 'Firebase'),
 )
 
 class Project(models.Model):
