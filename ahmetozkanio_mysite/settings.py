@@ -44,7 +44,6 @@ INSTALLED_APPS = [
 
     'ckeditor',
 
-    'api',
     'projects',
     'user',
     'certificates',
