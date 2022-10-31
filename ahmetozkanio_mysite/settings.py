@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    "corsheaders",
 
     'ckeditor',
 
@@ -68,7 +69,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware", #heroku
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware', # 
+    'django.middleware.locale.LocaleMiddleware', #
+    "corsheaders.middleware.CorsMiddleware", #
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -95,8 +97,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ahmetozkanio_mysite.wsgi.application'
-
-
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r'^https:\/\/ahmetozkanio.herokuapp.com$',
+]
+CORS_ALLOW_ALL_ORIGINS = True
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
